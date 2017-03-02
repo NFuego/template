@@ -1056,7 +1056,8 @@ extension UIViewController {
     }
     
     public func openRight() {
-        slideMenuController()?.openRight()    }
+        slideMenuController()?.openRight()
+    }
     
     public func closeLeft() {
         slideMenuController()?.closeLeft()

@@ -4,44 +4,60 @@ import UIKit
 import SnapKit
 import RxSwift
 import RxCocoa
+import GoogleMobileAds
 
-struct MenuOpt {
+public struct MenuOpt {
     var title : String!
     var targetVC : UIViewController?
     var icon : String?
+    var header = false
+    init(title:String,targetVC:UIViewController?,icon:String = "") {
+        self.title = title
+        self.targetVC = targetVC
+        self.icon = icon
+    }
 }
 
 
-class LeftSlideVC : UIViewController {
+open class OptsVC : UIViewController {
 
     var menuOpts:[MenuOpt]!
     
     var optsTableView:UITableView!
     
     // SubPages
-    static let basicVC = UINavigationController(rootViewController:OrigamiVC())
-    static let welcomeVC = UINavigationController(rootViewController: WelcomeVC())
+
+    // Var
+    var bannerView: GADBannerView!
     
     let dbg = DisposeBag()
 
-    override func viewDidLoad() {
+    override open func viewDidLoad() {
 
+        self.buildOpts()
         self.setup()
-            menuOpts = [MenuOpt(title:"",targetVC:LeftSlideVC.basicVC,icon:"")
-        ]
+
+         if SuccOrigamiConfig.useAd {
+            GADMobileAds.configure(withApplicationID: appId)
+
+            bannerView = GADBannerView(adSize: kGADAdSizeBanner)
+            bannerView.adUnitID = adGlobalBaseId
+            bannerView.rootViewController = self
+            let r = GADRequest()
+            if SuccOrigamiConfig.appMode == .development {
+                r.testDevices = [testId]
+            }
+            bannerView.load(r)
+        }
+
     } // fin viewDidLoad
 } // fin LeftSlideVC
 
 // MARK- UI Setup
-extension LeftSlideVC {
-    func newBtn(str:String)->UIButton {
-        let btn = UIButton()
-        btn.setTitle(str, for: .normal)
-        btn.setTitleColor(.black, for: .normal)
-        self.view.addSubview(btn)
-        return btn
+extension OptsVC {
+    func buildOpts(){
     }
-    
+
     func setup(){
         self.view.backgroundColor = .white
         optsTableView = UITableView()
@@ -53,12 +69,13 @@ extension LeftSlideVC {
         optsTableView.snp.makeConstraints { (make) in
             make.width.height.equalToSuperview()
         }
+        self.reloadTableView()
     }
 }
 
 
 // MARK: - UITableView Delegate
-extension LeftSlideVC : UITableViewDelegate  {
+extension OptsVC: UITableViewDelegate  {
     func reloadTableView(){
        optsTableView.delegate = self
        optsTableView.dataSource = self
@@ -73,17 +90,24 @@ extension LeftSlideVC : UITableViewDelegate  {
         cell.separatorInset = .zero
         cell.layoutMargins = .zero
 
-        if indexPath.row == 0 {
+        let opt = menuOpts[indexPath.row]
+
+        if opt.header {
             cell.updateAsHeader(opt: self.menuOpts[indexPath.row])
-        } else if indexPath.row == 1 || indexPath.row == 7 || indexPath.row == 9 {
-            cell.updateAsSubHeader(opt: self.menuOpts[indexPath.row])
-        } else if indexPath.row == 12 {
-            // logout
-            cell.update(opt: self.menuOpts[indexPath.row])
         } else {
             cell.update(opt: self.menuOpts[indexPath.row])
-            
         }
+        
+//        if indexPath.row == 0 {
+//        } else if indexPath.row == 1 || indexPath.row == 7 || indexPath.row == 9 {
+//            cell.updateAsSubHeader(opt: self.menuOpts[indexPath.row])
+//        } else if indexPath.row == 12 {
+            // logout
+//            cell.update(opt: self.menuOpts[indexPath.row])
+//        } else {
+//            cell.update(opt: self.menuOpts[indexPath.row])
+            
+//        }
         return cell
     }
     
@@ -93,9 +117,12 @@ extension LeftSlideVC : UITableViewDelegate  {
 
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height = 50
-        if indexPath.row == 0 {
+
+        let opt = menuOpts[indexPath.row]
+        if opt.header {
             height = 90
         }
+
        return CGFloat(height)
     }
 
@@ -107,7 +134,10 @@ extension LeftSlideVC : UITableViewDelegate  {
 //            (tableView.cellForRow(at: indexPath) as! MenuOptCell).setSelectedBg()
 //        }
         let selectedOpt = menuOpts[indexPath.row]
-        self.slideMenuController()?.changeMainViewController(selectedOpt.targetVC!, close: true)
+        if let vc = selectedOpt.targetVC {
+            EvtTracker.log(evtTitle: selectedOpt.title, contentType: vc.description)
+            self.slideMenuController()?.changeMainViewController(vc, close: true)
+        }
 
     } // fin tableView
 
@@ -125,6 +155,6 @@ extension LeftSlideVC : UITableViewDelegate  {
     }
 } 
 
-extension LeftSlideVC : UITableViewDataSource {
+extension OptsVC: UITableViewDataSource {
     
 }

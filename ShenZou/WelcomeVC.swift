@@ -3,16 +3,18 @@ import UIKit
 import SnapKit
 import Moya
 import SwiftyJSON
+import SwiftIconFont
 
 // 375 x 667
-class WelcomeVC : UIViewController {
-    
-    
+class WelcomeVC : UIViewController , VCDecoration {
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
+        self.setNavHeader(title: "menu.about",bgColor: nil,textColor: nil)
         setup()
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -24,17 +26,9 @@ class WelcomeVC : UIViewController {
 
 // MARK:- Setup
 extension WelcomeVC {
-    
     func setup(){
         self.view.backgroundColor = .white
         
-        let i = UIImage(named: "test")
-        let v = UIImageView(image: i)
-        self.view.addSubview(v)
-        v.snp.makeConstraints { (make) in
-            make.size.equalToSuperview()
-        }
-
 //        let lbFt = UIFont(name: "HelveticaNeue", size: 15)
 //        let lbFt1 = UIFont(name: "HelveticaNeue-Thin", size: 15)
         let s = UILabel()
@@ -60,11 +54,6 @@ extension WelcomeVC {
             make.height.equalTo(30)
 //            make.size.equalToSuperview()
         }
-    
-        
-        
-        
-        
     }
 }
 

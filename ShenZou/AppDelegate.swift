@@ -11,9 +11,12 @@ import FirebaseAnalytics
 
 
 
+let appId =  "ca-app-pub-5407585558041236~7852705102"
+let adGlobalBaseId = "ca-app-pub-5407585558041236/9329438302"
+let testId = "c42f210c300755999d430f0a2b2ca59b"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
 
     var window: UIWindow?
 
@@ -21,12 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let log = XCGLogger.default
     
     // Var
-    var bannerView: GADBannerView!
 
 
-    let appId =  "ca-app-pub-5407585558041236~7852705102"
-    let adGlobalBaseId = "ca-app-pub-5407585558041236/9329438302"
-    let testId = "c42f210c300755999d430f0a2b2ca59b"
     
 //    應用程式編號：ca-app-pub-5407585558041236~7852705102
 //    廣告單元編號：ca-app-pub-5407585558041236/
@@ -42,37 +41,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
          - ble restore 
          
          */
-
-
         SuccOrigamiConfig.appMode = .development
+        SuccOrigamiConfig.useAd = false
 //        SuccOrigamiConfig.appMode = .production
 //        configLog()
         configUIAppearance()
 
-        let leftVC = LeftSlideVC()
+        let slideVC = SlideVC()
 //        let slideMenuController = SlideMenuController(mainViewController: leftVC.inOneVC, leftMenuViewController: leftVC)
 //        let slideMenuController = SlideMenuController(mainViewController: welcomeVC, leftMenuViewController: leftVC)
-        let slideMenuController = SlideMenuController(mainViewController: LeftSlideVC.basicVC, leftMenuViewController: leftVC)
+        let slideMenuController = SlideMenuController(mainViewController: SlideVC.aboutVC, leftMenuViewController: slideVC)
         self.window?.rootViewController = slideMenuController
         self.window?.makeKeyAndVisible()
-        
+
+
+
         // Configure Admob
         FIRApp.configure()
-        GADMobileAds.configure(withApplicationID: appId)
-        
-        bannerView = GADBannerView()
-        bannerView.adUnitID = adGlobalBaseId
-        bannerView.rootViewController = LeftSlideVC.basicVC
-        let r = GADRequest()
-        if SuccOrigamiConfig.appMode == .development {
-            r.testDevices = [testId]
-        }
-        bannerView.load(r)
-//        r.testDevices = []
-//        bannerView.load(r)
+       
 
-
-        
 //        print(hexString)
         // first time
         return true
@@ -118,7 +105,7 @@ extension AppDelegate {
 extension AppDelegate {
     func configUIAppearance(){
 //        let lbFt = UIFont.systemFont(ofSize: 15, weight: UIFontWeightThin)
-        let lbFt = UIFont(name: "HelveticaNeue-Thin", size: 15)
+        let lbFt = UIFont(name: "HelveticaNeue-Thin", size: 20)
 //        [[UILabel appearance]setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:32.0f]];
         UILabel.appearance().defaultFont = lbFt
 
@@ -132,6 +119,7 @@ extension AppDelegate {
 //            }
 //        }
     }
+
 }
 
 
@@ -211,3 +199,6 @@ extension UILabel{
 //        }
 //    }
 //}
+public func i18n(_ str:String)->String {
+    return NSLocalizedString(str, comment: "")
+}

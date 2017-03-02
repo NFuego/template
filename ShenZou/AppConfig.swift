@@ -21,6 +21,7 @@ public enum AppMode : String {
 final class SuccOrigamiConfig : NSObject {
 
     static var appMode = AppMode.development
+    static var useAd = true
 
 
     

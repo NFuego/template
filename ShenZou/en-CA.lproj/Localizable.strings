@@ -1,0 +1,13 @@
+
+"menu.about" = "About";
+"menu.intro" = "Introduction";
+
+"menu.fundamental" = "Fundamental Forms:";
+"menu.base" = "Base Form";
+"menu.waterbomb" = "Waterbomb Form";
+"menu.bird" = "Bird Form";
+"menu.kite" = "Kite Form";
+"menu.frog" = "Frog Form";
+"menu.windmill" = "Windmill Form";
+"menu.fish" = "Fish Form";
+"menu.square" = "Square Form";
