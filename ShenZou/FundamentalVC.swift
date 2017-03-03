@@ -7,8 +7,8 @@ class FundamentalVC : OptsVC , VCDecoration , OptsDecoration {
     override func buildOpts() {
         self.setNavHeader(title: "menu.fundamental",bgColor: UIColor(hex:"#9eabff"),textColor: .white)
         menuOpts = [
-                        MenuOpt(title:i18n("menu.bird"),targetVC:nil,icon:""),
-                        MenuOpt(title:i18n("menu.kite"),targetVC:nil,icon:""),
+                        MenuOpt(title:i18n("menu.bird"),targetVC:Waterbomb(),icon:""),
+                        MenuOpt(title:i18n("menu.kite"),targetVC:BirdBase(),icon:""),
                         MenuOpt(title:i18n("menu.frog"),targetVC:nil,icon:""),
                         MenuOpt(title:i18n("menu.fish"),targetVC:nil,icon:""),
                         MenuOpt(title:i18n("menu.square"),targetVC:nil,icon:""),
@@ -28,7 +28,13 @@ class FundamentalVC : OptsVC , VCDecoration , OptsDecoration {
         cell.backgroundColor = UIColor.white
         cell.lbVal.textColor = UIColor.options
     }
-} 
+
+    override func showVC(_ vc:UIViewController){
+//        self.pushViewController(vc,animated:true):
+        self.navigationController?.pushViewController(vc,animated:true)
+
+    }
+}
 
 // MARK:- setup
 extension FundamentalVC {

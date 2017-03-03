@@ -157,7 +157,7 @@ extension OptsVC: UITableViewDelegate  {
         let selectedOpt = menuOpts[indexPath.row]
         if let vc = selectedOpt.targetVC {
             EvtTracker.log(evtTitle: selectedOpt.title, contentType: vc.description)
-            self.slideMenuController()?.changeMainViewController(vc, close: true)
+            showVC( vc)
         }
 
 //        (tableView.cellForRow(at: indexPath) as! MenuOptCell).contentView.backgroundColor = .gray
@@ -177,13 +177,6 @@ extension OptsVC: UITableViewDelegate  {
         }
     }
 
-    public func whenHighlight(_ cell:UITableViewCell){
-        
-    }
-
-    public func whenUnhighlight(_ cell:UITableViewCell){
-        
-    }
 
     // **  Deselecteion happens when a row is previous selected but user taps to other new row
 //    public func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -210,8 +203,25 @@ extension OptsVC: UITableViewDelegate  {
     public func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-} 
+}
+
+// MARK:- For Subclass to override
+extension OptsVC {
+    public func whenHighlight(_ cell:UITableViewCell){
+        
+    }
+
+    public func whenUnhighlight(_ cell:UITableViewCell){
+        
+    }
+
+    public func showVC(_ vc:UIViewController){
+        self.slideMenuController()?.changeMainViewController(vc, close: true)
+    }
+}
 
 extension OptsVC: UITableViewDataSource {
     
 }
+
+

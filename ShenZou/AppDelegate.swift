@@ -27,7 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Var
 
 
-    
+// icon
+//    https://icons8.com/web-app/for/all/arrow
+
 //    應用程式編號：ca-app-pub-5407585558041236~7852705102
 //    廣告單元編號：ca-app-pub-5407585558041236/
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -59,7 +61,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
 
 
-        AppOp.sendMail()
 
 //        print(hexString)
         // first time
