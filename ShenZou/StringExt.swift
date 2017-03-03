@@ -1,12 +1,4 @@
-//
-//  StringExt.swift
-//  ShenZou
-//
-//  Created by zcon on 2016/12/29.
-//  Copyright © 2016年 zcon. All rights reserved.
-//
 
-//import Foundation
 
 
 extension String {

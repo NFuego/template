@@ -1,13 +1,12 @@
-//
-//  VCProtocols.swift
-//  SuccessfulOrigami
-//
-//  Created by zcon on 2017/3/2.
-//  Copyright © 2017年 zcon. All rights reserved.
-//
+
 
 import Foundation
 
+// =========================================================
+//
+//  UIViewController
+//
+// =========================================================
 public protocol VCDecoration {
     func setNavHeader(title:String, bgColor:UIColor?, textColor:UIColor?)
 }
@@ -35,3 +34,24 @@ extension VCDecoration where Self : UIViewController {
     }
 }
 
+
+
+// =========================================================
+//
+//  OptsVC
+//
+// =========================================================
+public protocol OptsDecoration {
+    func randomBGColor()->UIColor
+}
+
+extension OptsDecoration where Self : OptsVC {
+
+    private var bgColors:[UIColor] {
+        return [UIColor.uiviewHeader,UIColor.dance,UIColor.youngGirl,UIColor.soakedToRed,UIColor.sunset,UIColor.ocean,UIColor.freshPink]
+    }
+
+    func randomBGColor()->UIColor {
+        return bgColors[Int(arc4random_uniform(UInt32(bgColors.count)))]
+    }
+}

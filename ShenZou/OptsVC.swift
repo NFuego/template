@@ -7,15 +7,22 @@ import RxCocoa
 import GoogleMobileAds
 
 public struct MenuOpt {
+
+    
     var title : String!
     var targetVC : UIViewController?
     var icon : String?
     var header = false
+
+
+    
+    
     init(title:String,targetVC:UIViewController?,icon:String = "") {
         self.title = title
         self.targetVC = targetVC
         self.icon = icon
     }
+    
 }
 
 
@@ -31,6 +38,10 @@ open class OptsVC : UIViewController {
     var bannerView: GADBannerView!
     
     let dbg = DisposeBag()
+    
+    // Config Vars
+    public var rowHeight = 65
+    public var rowHeaderHeight = 90
 
     override open func viewDidLoad() {
 
@@ -87,6 +98,7 @@ extension OptsVC: UITableViewDelegate  {
 //        cell.prepareForReuse()
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuOptCell", for: indexPath) as! MenuOptCell
 
+        cell.selectionStyle = .none
         cell.separatorInset = .zero
         cell.layoutMargins = .zero
 
@@ -116,15 +128,20 @@ extension OptsVC: UITableViewDelegate  {
     }
 
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var height = 50
+        var height = rowHeight
 
         let opt = menuOpts[indexPath.row]
         if opt.header {
-            height = 90
+            height = rowHeaderHeight
         }
 
        return CGFloat(height)
     }
+
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    }
+
+
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        print(indexPath.row)
@@ -133,13 +150,53 @@ extension OptsVC: UITableViewDelegate  {
 //        } else {
 //            (tableView.cellForRow(at: indexPath) as! MenuOptCell).setSelectedBg()
 //        }
+
+//        print(tableView.cellForRow(at: indexPath)?.focusStyle.rawValue)
+//        print(tableView.cellForRow(at: indexPath)?.selectionStyle.rawValue)
+
         let selectedOpt = menuOpts[indexPath.row]
         if let vc = selectedOpt.targetVC {
             EvtTracker.log(evtTitle: selectedOpt.title, contentType: vc.description)
             self.slideMenuController()?.changeMainViewController(vc, close: true)
         }
 
+//        (tableView.cellForRow(at: indexPath) as! MenuOptCell).contentView.backgroundColor = .gray
+//        tableView.deselectRow(at: indexPath, animated: true)
+
     } // fin tableView
+
+    public func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath as IndexPath) {
+            whenHighlight(cell)
+        }
+    }
+
+    public func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath as IndexPath)  {
+            whenUnhighlight(cell)
+        }
+    }
+
+    public func whenHighlight(_ cell:UITableViewCell){
+        
+    }
+
+    public func whenUnhighlight(_ cell:UITableViewCell){
+        
+    }
+
+    // **  Deselecteion happens when a row is previous selected but user taps to other new row
+//    public func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
+//
+//        (tableView.cellForRow(at: indexPath) as! MenuOptCell).contentView.backgroundColor = .white
+//        return indexPath
+//    }
+
+//    public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+//        (tableView.cellForRow(at: indexPath) as! MenuOptCell).contentView.backgroundColor = .white
+//        print(indexPath)
+
+//    }
 
     public func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
 //        let row = indexPath.row

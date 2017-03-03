@@ -1,10 +1,4 @@
-//
-//  ShenZouUrls.swift
-//  ShenZou
-//
-//  Created by zcon on 2017/1/3.
-//  Copyright © 2017年 zcon. All rights reserved.
-//
+
 
 import Foundation
 

@@ -2,10 +2,10 @@
 
 import UIKit
 
-class FundamentalVC : OptsVC , VCDecoration {
+class FundamentalVC : OptsVC , VCDecoration , OptsDecoration {
 
     override func buildOpts() {
-        self.setNavHeader(title: "menu.fundamental",bgColor: UIColor(hex:"#CDCFFF"),textColor: UIColor(hex:"#8186ff"))
+        self.setNavHeader(title: "menu.fundamental",bgColor: UIColor(hex:"#9eabff"),textColor: .white)
         menuOpts = [
                         MenuOpt(title:i18n("menu.bird"),targetVC:nil,icon:""),
                         MenuOpt(title:i18n("menu.kite"),targetVC:nil,icon:""),
@@ -14,6 +14,19 @@ class FundamentalVC : OptsVC , VCDecoration {
                         MenuOpt(title:i18n("menu.square"),targetVC:nil,icon:""),
                         MenuOpt(title:i18n("menu.windmill"),targetVC:nil,icon:"")
         ]
+    }
+
+    override func whenHighlight(_ cell: UITableViewCell) {
+
+        let cell = cell as! MenuOptCell
+        cell.backgroundColor = self.randomBGColor()
+        cell.lbVal.textColor = .white
+    }
+
+    override func whenUnhighlight(_ cell: UITableViewCell) {
+        let cell = cell as! MenuOptCell
+        cell.backgroundColor = UIColor.white
+        cell.lbVal.textColor = UIColor.options
     }
 } 
 

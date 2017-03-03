@@ -8,6 +8,7 @@ class MenuOptCell : UITableViewCell {
 
     static let leadingOffset = 40
 
+
     override func prepareForReuse() {
         super.prepareForReuse()
 //        print("reuse")
@@ -136,3 +137,4 @@ extension MenuOptCell {
 //        self.contentView.backgroundColor = .white
 //    }
 }
+

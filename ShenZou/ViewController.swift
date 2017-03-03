@@ -1,10 +1,4 @@
-//
-//  ViewController.swift
-//  ShenZou
-//
-//  Created by zcon on 2016/12/27.
-//  Copyright © 2016年 zcon. All rights reserved.
-//
+
 
 import UIKit
 import SnapKit

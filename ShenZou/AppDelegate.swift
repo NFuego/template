@@ -9,6 +9,7 @@ import XCGLogger
 import GoogleMobileAds
 import FirebaseAnalytics
 
+import MessageUI
 
 
 let appId =  "ca-app-pub-5407585558041236~7852705102"
@@ -54,11 +55,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = slideMenuController
         self.window?.makeKeyAndVisible()
 
-
-
         // Configure Admob
         FIRApp.configure()
-       
+
+
+        AppOp.sendMail()
 
 //        print(hexString)
         // first time
@@ -105,7 +106,7 @@ extension AppDelegate {
 extension AppDelegate {
     func configUIAppearance(){
 //        let lbFt = UIFont.systemFont(ofSize: 15, weight: UIFontWeightThin)
-        let lbFt = UIFont(name: "HelveticaNeue-Thin", size: 20)
+        let lbFt = UIFont(name: "HelveticaNeue-Thin", size: 27)
 //        [[UILabel appearance]setFont:[UIFont fontWithName:@"HelveticaNeue-Thin" size:32.0f]];
         UILabel.appearance().defaultFont = lbFt
 
@@ -119,7 +120,19 @@ extension AppDelegate {
 //            }
 //        }
     }
-
+    
+//    func sendEmail() {
+//        if MFMailComposeViewController.canSendMail() {
+//            let mail = MFMailComposeViewController()
+////            mail.mailComposeDelegate = self
+//            mail.setToRecipients(["paul@hackingwithswift.com"])
+//            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
+//
+//            present(mail, animated: true)
+//        } else {
+//            // show failure alert
+//        }
+//    }
 }
 
 
@@ -202,3 +215,4 @@ extension UILabel{
 public func i18n(_ str:String)->String {
     return NSLocalizedString(str, comment: "")
 }
+
