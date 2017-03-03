@@ -16,6 +16,7 @@ final class SuccOrigamiConfig : NSObject {
 
     static var appMode = AppMode.development
     static var useAd = true
+    static var author_mail = "biologic.production@gmail.com"
 
 
     
