@@ -45,6 +45,7 @@
 		E7D0D0A61E1B9EAF009C8D75 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D0D0A51E1B9EAF009C8D75 /* AppConfig.swift */; };
 		E7D2B0881E695DA6006F0394 /* Waterbomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D2B0871E695DA6006F0394 /* Waterbomb.swift */; };
 		E7DD1A381E69629900BB7896 /* BirdBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DD1A371E69629900BB7896 /* BirdBase.swift */; };
+		E7DD1A3A1E69677F00BB7896 /* KiteBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DD1A391E69677F00BB7896 /* KiteBase.swift */; };
 		E7DE4D311E14DD9F00E56314 /* StringExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7DE4D301E14DD9F00E56314 /* StringExt.swift */; };
 		E7EFABE41E1CDA0D00DC3DA8 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EFABE31E1CDA0D00DC3DA8 /* Assembly.swift */; };
 		E7FAE9671E67AF1A00040F6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7FAE9661E67AF1A00040F6F /* Assets.xcassets */; };
@@ -203,6 +204,7 @@
 		E7D0D0A51E1B9EAF009C8D75 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
 		E7D2B0871E695DA6006F0394 /* Waterbomb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Waterbomb.swift; sourceTree = "<group>"; };
 		E7DD1A371E69629900BB7896 /* BirdBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BirdBase.swift; sourceTree = "<group>"; };
+		E7DD1A391E69677F00BB7896 /* KiteBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KiteBase.swift; sourceTree = "<group>"; };
 		E7DE4D301E14DD9F00E56314 /* StringExt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExt.swift; sourceTree = "<group>"; };
 		E7EFABE31E1CDA0D00DC3DA8 /* Assembly.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		E7FAE9661E67AF1A00040F6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 			children = (
 				E7D2B0871E695DA6006F0394 /* Waterbomb.swift */,
 				E7DD1A371E69629900BB7896 /* BirdBase.swift */,
+				E7DD1A391E69677F00BB7896 /* KiteBase.swift */,
 			);
 			name = fundamental;
 			sourceTree = "<group>";
@@ -651,6 +654,7 @@
 				E78009EA1E149D480076E030 /* OptsVC.swift in Sources */,
 				E756DDD91E694BD10064A3C4 /* UIImage+Utils.m in Sources */,
 				E7CAE0741E6819230070647F /* Color+HexAndCSSColorNames.swift in Sources */,
+				E7DD1A3A1E69677F00BB7896 /* KiteBase.swift in Sources */,
 				E70D77801E1C9237001D3BA9 /* SzAPI.swift in Sources */,
 				E7CAE06E1E6803BA0070647F /* VCProtocols.swift in Sources */,
 				E7FAE96B1E67BEE000040F6F /* MenuOptCell.swift in Sources */,

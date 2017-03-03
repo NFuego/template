@@ -1,14 +1,13 @@
 
-
 import UIKit
 
 class FundamentalVC : OptsVC , VCDecoration , OptsDecoration {
-
     override func buildOpts() {
         self.setNavHeader(title: "menu.fundamental",bgColor: UIColor(hex:"#9eabff"),textColor: .white)
         menuOpts = [
-                        MenuOpt(title:i18n("menu.bird"),targetVC:Waterbomb(),icon:""),
-                        MenuOpt(title:i18n("menu.kite"),targetVC:BirdBase(),icon:""),
+                        MenuOpt(title:i18n("menu.bird"),targetVC:BirdBase(),icon:""),
+                        MenuOpt(title:i18n("menu.kite"),targetVC:KiteBase(),icon:""),
+                        MenuOpt(title:i18n("menu.waterbomb"),targetVC:Waterbomb(),icon:""),
                         MenuOpt(title:i18n("menu.frog"),targetVC:nil,icon:""),
                         MenuOpt(title:i18n("menu.fish"),targetVC:nil,icon:""),
                         MenuOpt(title:i18n("menu.square"),targetVC:nil,icon:""),
